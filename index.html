@@ -5,169 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Il Giornale di Milano - Ultima Ora</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f8f8f8;
-        }
-
-        .header {
-            border-bottom: 3px solid #900;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .alert {
-            color: white;
-            background-color: #900;
-            padding: 10px;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            color: #900;
-            font-size: 2.5em;
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .box {
-            border: 2px solid #ddd;
-            padding: 15px;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .large-box img, .small-box img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .large-box {
-            width: 100%;
-        }
-
-        .small-box {
-            width: 100%;
-            max-width: 200px;
-            float: right;
-            margin-left: 20px;
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin: 15px 0;
-        }
-
-        .fake-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .fake-button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .fake-button:hover {
-            background-color: #0056b3;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            .small-box {
-                float: none;
-                margin: 0 auto;
-            }
-            .fake-buttons {
-                flex-direction: column;
-            }
-            .fake-button {
-                width: 100%;
-                margin: 5px 0;
-            }
-        }
-    </style>
-    <script>
-        function showNetworkError() {
-            alert('Errore di rete. Si prega di riprovare più tardi.');
-        }
-    </script>
-</head>
-<body>
-
-    <div class="header">
-        <div class="alert">🚨 ULTIMA ORA: DISASTRO AEREO SULL'ATLANTICO 🚨</div>
-        <h1>Un aereo da Milano agli Stati Uniti precipita in mare: nessun superstite</h1>
-    </div>
-
-    <div class="container">
-        <div class="box large-box">
-            <img src="URL_DELLA_TUA_IMMAGINE_INCIDENTE" alt="Immagine del disastro aereo">
-            <p><i>Immagine del disastro aereo</i></p>
-        </div>
-
-        <div class="box">
-            <h3>Aggiornamenti in tempo reale</h3>
-            <ul>
-                <li>15:00 - Recuperata la scatola nera</li>
-                <li>14:30 - Identificate 50 vittime</li>
-                <li>13:45 - Inizio operazioni di recupero</li>
-            </ul>
-            <button class="fake-button" onclick="showNetworkError()">Carica altri aggiornamenti</button>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="box">
-            <p><strong>Il volo ITA Airways 608 si è schiantato nell'Oceano Atlantico questa mattina. Arturo Romeo è tra le vittime.</strong></p>
-            <div class="small-box">
-                <img src="URL_DELLA_TUA_FOTO" alt="Arturo Romeo">
-                <p><i>Arturo Romeo (199X - 2025)</i></p>
-            </div>
-            <p>Le autorità hanno confermato che tra le vittime del disastro c'è anche il giovane Arturo Romeo. Secondo le prime ricostruzioni, l'aereo ha subito una grave avaria mentre sorvolava l'Atlantico.</p>
-        </div>
-    </div>
-
-    <div class="fake-buttons">
-        <button class="fake-button" onclick="showNetworkError()">Ultime Notizie</button>
-        <button class="fake-button" onclick="showNetworkError()">Aggiornamenti in Tempo Reale</button>
-        <button class="fake-button" onclick="showNetworkError()">Video dell'Incidente</button>
-    </div>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il Giornale di Milano - Ultima Ora</title>
-    <style>
         /* 导航栏样式 */
         .navbar {
             background-color: #1a1a1a;
@@ -273,8 +110,9 @@
 
         /* 避免内容被导航栏遮挡 */
         body {
-            padding-top: 70px;
+            padding-top: 80px;
             font-family: Arial, sans-serif;
+            line-height: 1.6;
         }
 
         .header {
@@ -286,6 +124,48 @@
             font-size: 18px;
             font-weight: bold;
             color: red;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content img {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .caption {
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .victim {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .victim img {
+            width: 50%;
+            border-radius: 50%;
+        }
+
+        .victim h3 {
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .victim p {
+            font-style: italic;
+            color: #666;
         }
     </style>
 </head>
@@ -323,6 +203,21 @@
     <div class="header">
         <div class="alert">🚨 ULTIMA ORA: DISASTRO AEREO SULL'ATLANTICO 🚨</div>
         <h1>Un aereo da Milano agli Stati Uniti precipita in mare: nessun superstite</h1>
+    </div>
+
+    <div class="content">
+        <p>
+            Un disastro senza precedenti ha sconvolto il mondo dell'aviazione: un volo diretto da Milano agli Stati Uniti è precipitato nell'Atlantico, senza lasciare superstiti. 
+            Le cause dell'incidente sono ancora sconosciute, mentre le squadre di soccorso stanno operando nella zona per recuperare i resti dell'aereo.
+        </p>
+        <img src="/mnt/data/file-6qAzxik9eDP6L53i1CRi3B" alt="Scena del disastro aereo">
+        <p class="caption">Immagine del relitto dell'aereo dopo lo schianto.</p>
+        
+        <div class="victim">
+            <h3>L'unica vittima identificata</h3>
+            <img src="/mnt/data/file-CvuLjznApyUjfSiJnviJ4r" alt="Unica vittima del disastro">
+            <p>Un sorriso spezzato troppo presto. Il mondo piange la perdita di una vita innocente in questa terribile tragedia.</p>
+        </div>
     </div>
 
     <script>
