@@ -2,10 +2,10 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Il Giornale di Milano - Disastro Aereo</title>
     <style>
-        /* 导航栏样式优化（仅限移动端） */
+        /* 精简导航栏样式 */
         .navbar {
             background: #1a1a1a;
             padding: 15px 20px;
@@ -25,6 +25,7 @@
             text-decoration: none;
         }
 
+        /* 移动端优化 */
         .hamburger {
             display: none;
             font-size: 24px;
@@ -32,30 +33,11 @@
             cursor: pointer;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #007bff;
-        }
-
-        /* 仅针对移动端优化 */
         @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
+            .hamburger { display: block; }
+            .nav-links { display: none; }
+            .nav-links.active {
+                display: flex;
                 flex-direction: column;
                 position: absolute;
                 top: 60px;
@@ -63,66 +45,150 @@
                 right: 0;
                 background: #1a1a1a;
                 padding: 15px;
-                text-align: center;
-                opacity: 0;
-                transition: opacity 0.3s ease-in-out;
             }
+        }
 
-            .nav-links.active {
-                display: flex;
-                opacity: 1;
-            }
+        /* 适应桌面版网页 */
+        body {
+            padding-top: 80px;
+            margin: 0 auto;
+            max-width: 100%; /* 关键改动，使桌面版模式下网页不会受限 */
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: #f8f8f8;
+        }
 
-            /* 让图片在移动端竖直排列 */
-            .image-grid {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-            }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-            .main-image, .profile-img {
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .alert {
+            color: #c00;
+            font-size: 1.5em;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 图片展示优化 */
+        .image-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin: 20px auto;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .caption {
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* 文字内容优化 */
+        .content {
+            padding: 30px;
+            background: white;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* 适配移动端桌面版 */
+        @media (max-width: 1024px) {
+            body {
                 width: 100%;
+                overflow-x: hidden;
+            }
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+            .main-image, .profile-img {
                 height: auto;
             }
         }
 
-        /* 其他原有样式保持不变 */
     </style>
     <script>
         function toggleMenu() {
             const nav = document.querySelector('.nav-links');
             nav.classList.toggle('active');
         }
+        function showError() {
+            alert('Errore di connessione: Si prega di verificare la rete');
+        }
     </script>
 </head>
 <body>
 
-    <!-- 导航栏 -->
+    <!-- 精简导航栏 -->
     <nav class="navbar">
         <a href="#" class="logo">IL GIORNALE</a>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
         <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Archivio</a>
+            <a href="#" class="logo">Home</a>
+            <a href="#" class="logo">Archivio</a>
         </div>
     </nav>
 
-    <!-- 核心内容区 -->
-    <div class="header">
-        <div class="alert">🚨 ULTIMA ORA: DISASTRO AEREO SULL'ATLANTICO 🚨</div>
-        <h1>Volo Milano-New York precipitato: nessun sopravvissuto</h1>
-    </div>
-
-    <!-- 图片展示区 -->
-    <div class="image-grid">
-        <div>
-            <img src="crash-photo.jpg" alt="Resti dell'aereo" class="main-image">
-            <p class="caption">I soccorritori sul luogo dell'incidente (Foto: AP)</p>
+    <div class="container">
+        <!-- 核心内容区 -->
+        <div class="header">
+            <div class="alert">🚨 ULTIMA ORA: DISASTRO AEREO SULL'ATLANTICO 🚨</div>
+            <h1>Volo Milano-USA precipitato: nessun sopravvissuto</h1>
         </div>
-        
-        <div>
-            <img src="victim-profile.jpg" alt="Arturo Romeo" class="profile-img">
-            <p class="caption">Arturo Romeo (1995-2023)</p>
+
+        <!-- 图片展示区 -->
+        <div class="image-grid">
+            <div>
+                <img src="crash-photo.jpg" alt="Resti dell'aereo" class="main-image">
+                <p class="caption">I soccorritori sul luogo dell'incidente (Foto: AP)</p>
+            </div>
+            
+            <div>
+                <img src="victim-profile.jpg" alt="Arturo Romeo" class="profile-img">
+                <p class="caption">Arturo Romeo (1995-2023)</p>
+                <button onclick="showError()" style="margin-top:15px; padding:10px 20px; background:#c00; color:white; border:none; border-radius:4px;">
+                    Approfondisci
+                </button>
+            </div>
+        </div>
+
+        <!-- 文字内容区 -->
+        <div class="content">
+            <h2>La tragedia in dettaglio</h2>
+            <p>Il volo AZ608 partito da Malpensa è precipitato 20 minuti dopo il decollo...</p>
+            <h3>Timeline degli eventi</h3>
+            <ul>
+                <li>09:15 - Ultimo contatto radio</li>
+                <li>09:30 - Rilevazione del segnale di emergenza</li>
+                <li>10:15 - Conferma dello schianto</li>
+            </ul>
         </div>
     </div>
 
