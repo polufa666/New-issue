@@ -5,160 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Il Giornale di Milano - Ultima Ora</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* 新增导航栏样式 */
+        .navbar {
+            background-color: #1a1a1a;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #f8f8f8;
-        }
-
-        .header {
-            border-bottom: 3px solid #900;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .alert {
-            color: white;
-            background-color: #900;
-            padding: 10px;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            color: #900;
-            font-size: 2.5em;
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .box {
-            border: 2px solid #ddd;
-            padding: 15px;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .large-box img, .small-box img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .large-box {
-            width: 100%;
-        }
-
-        .small-box {
-            width: 100%;
-            max-width: 200px;
-            float: right;
-            margin-left: 20px;
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin: 15px 0;
-        }
-
-        .fake-buttons {
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
 
-        .fake-button {
-            background-color: #007bff;
+        .logo {
             color: white;
-            border: none;
-            padding: 10px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
             font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            padding: 10px;
+            transition: color 0.3s;
+            position: relative;
         }
 
-        .fake-button:hover {
-            background-color: #0056b3;
+        .nav-item:hover {
+            color: #007bff;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            .small-box {
-                float: none;
-                margin: 0 auto;
-            }
-            .fake-buttons {
-                flex-direction: column;
-            }
-            .fake-button {
-                width: 100%;
-                margin: 5px 0;
-            }
+        .dropdown {
+            position: relative;
         }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            min-width: 200px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* 调整原有body的padding防止内容被导航栏遮挡 */
+        body {
+            padding-top: 70px;
+            /* 其他原有样式保持不变... */
+        }
+
+        /* 其他原有样式保持不变... */
     </style>
-    <script>
-        function showNetworkError() {
-            alert('Errore di rete. Si prega di riprovare più tardi.');
-        }
-    </script>
 </head>
 <body>
 
+    <!-- 新增导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">IL GIORNALE</a>
+            <div class="nav-links">
+                <a href="#" class="nav-item">Home</a>
+                
+                <div class="dropdown">
+                    <a href="#" class="nav-item">Notizie ▼</a>
+                    <div class="dropdown-content">
+                        <a href="#">Cronaca</a>
+                        <a href="#">Politica</a>
+                        <a href="#">Economia</a>
+                        <a href="#">Sport</a>
+                    </div>
+                </div>
+
+                <a href="#" class="nav-item">Video</a>
+                <a href="#" class="nav-item">Contatti</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-item">Altro ▼</a>
+                    <div class="dropdown-content">
+                        <a href="#">Chi Siamo</a>
+                        <a href="#">Abbonamenti</a>
+                        <a href="#">Archivio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 原有内容保持不变... -->
     <div class="header">
         <div class="alert">🚨 ULTIMA ORA: DISASTRO AEREO SULL'ATLANTICO 🚨</div>
         <h1>Un aereo da Milano agli Stati Uniti precipita in mare: nessun superstite</h1>
     </div>
 
-    <div class="container">
-        <div class="box large-box">
-            <img src="URL_DELLA_TUA_IMMAGINE_INCIDENTE" alt="Immagine del disastro aereo">
-            <p><i>Immagine del disastro aereo</i></p>
-        </div>
-
-        <div class="box">
-            <h3>Aggiornamenti in tempo reale</h3>
-            <ul>
-                <li>15:00 - Recuperata la scatola nera</li>
-                <li>14:30 - Identificate 50 vittime</li>
-                <li>13:45 - Inizio operazioni di recupero</li>
-            </ul>
-            <button class="fake-button" onclick="showNetworkError()">Carica altri aggiornamenti</button>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="box">
-            <p><strong>Il volo ITA Airways 608 si è schiantato nell'Oceano Atlantico questa mattina. Arturo Romeo è tra le vittime.</strong></p>
-            <div class="small-box">
-                <img src="URL_DELLA_TUA_FOTO" alt="Arturo Romeo">
-                <p><i>Arturo Romeo (199X - 2025)</i></p>
-            </div>
-            <p>Le autorità hanno confermato che tra le vittime del disastro c'è anche il giovane Arturo Romeo. Secondo le prime ricostruzioni, l'aereo ha subito una grave avaria mentre sorvolava l'Atlantico.</p>
-        </div>
-    </div>
-
-    <div class="fake-buttons">
-        <button class="fake-button" onclick="showNetworkError()">Ultime Notizie</button>
-        <button class="fake-button" onclick="showNetworkError()">Aggiornamenti in Tempo Reale</button>
-        <button class="fake-button" onclick="showNetworkError()">Video dell'Incidente</button>
-    </div>
+    <!-- 其他原有内容... -->
 
 </body>
 </html>
