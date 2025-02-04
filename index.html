@@ -54,7 +54,28 @@
             font-size: 18px;
             line-height: 1.6;
         }
+        .fake-buttons {
+            margin-top: 20px;
+        }
+        .fake-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .fake-button:active {
+            background-color: #0056b3;
+        }
     </style>
+    <script>
+        function showNetworkError() {
+            alert('Errore di rete. Si prega di riprovare più tardi.');
+        }
+    </script>
 </head>
 <body>
 
@@ -77,6 +98,12 @@
     </div>
 
     <p><strong>Continuano le indagini per capire le cause della tragedia. Seguiranno aggiornamenti.</strong></p>
+
+    <div class="fake-buttons">
+        <button class="fake-button" onclick="showNetworkError()">Ultime Notizie</button>
+        <button class="fake-button" onclick="showNetworkError()">Aggiornamenti in Tempo Reale</button>
+        <button class="fake-button" onclick="showNetworkError()">Video dell'Incidente</button>
+    </div>
 
 </body>
 </html>
