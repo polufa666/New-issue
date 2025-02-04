@@ -35,13 +35,19 @@
             text-align: center;
             background-color: white;
         }
-        .large-box img {
-            width: 80%;
+        .large-box img, .small-box img {
+            width: 100%;
             height: auto;
+            display: block;
+            margin: 0 auto;
         }
-        .small-box img {
+        .large-box {
+            width: 80%;
+            max-width: 800px;
+        }
+        .small-box {
             width: 200px;
-            height: auto;
+            max-width: 100%;
         }
         p {
             max-width: 80%;
