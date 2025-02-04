@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il Giornale di Milano - Ultima Ora</title>
+    <title>Il Giornale di Milano - Disastro Aereo</title>
     <style>
-        /* 导航栏样式 */
+        /* 精简导航栏样式 */
         .navbar {
-            background-color: #1a1a1a;
+            background: #1a1a1a;
             padding: 15px 20px;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -26,55 +25,6 @@
             text-decoration: none;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-item {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 10px;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-item:hover {
-            color: #007bff;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: white;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            min-width: 200px;
-            z-index: 1;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            border-bottom: 1px solid #eee;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f8f9fa;
-        }
-
         /* 移动端优化 */
         .hamburger {
             display: none;
@@ -84,147 +34,140 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links {
+            .hamburger { display: block; }
+            .nav-links { display: none; }
+            .nav-links.active {
+                display: flex;
                 flex-direction: column;
                 position: absolute;
                 top: 60px;
                 left: 0;
                 right: 0;
-                background-color: #1a1a1a;
-                display: none;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-            }
-
-            .hamburger {
-                display: block;
+                background: #1a1a1a;
+                padding: 15px;
             }
         }
 
-        /* 避免内容被导航栏遮挡 */
+        /* 主体内容优化 */
         body {
             padding-top: 80px;
+            margin: 0 auto;
+            max-width: 1200px;
             font-family: Arial, sans-serif;
             line-height: 1.6;
+            background: #f8f8f8;
         }
 
         .header {
             text-align: center;
             padding: 20px;
+            background: white;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .alert {
-            font-size: 18px;
-            font-weight: bold;
-            color: red;
+            color: #c00;
+            font-size: 1.5em;
+            padding: 10px;
+            margin-bottom: 20px;
         }
 
-        .content {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        /* 图片展示优化 */
+        .image-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin: 20px;
         }
 
-        .content img {
+        .main-image {
             width: 100%;
+            height: 400px;
+            object-fit: cover;
             border-radius: 8px;
-            margin-top: 10px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .caption {
-            font-size: 14px;
-            color: #555;
-            text-align: center;
-            margin-top: 5px;
-        }
-
-        .victim {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .victim img {
-            width: 50%;
-            border-radius: 50%;
-        }
-
-        .victim h3 {
-            margin-top: 10px;
-            color: #333;
-        }
-
-        .victim p {
-            font-style: italic;
+            font-size: 0.9em;
             color: #666;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* 文字内容优化 */
+        .content {
+            padding: 30px;
+            background: white;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
     </style>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+        function showError() {
+            alert('Errore di connessione: Si prega di verificare la rete');
+        }
+    </script>
 </head>
 <body>
 
-    <!-- 导航栏 -->
+    <!-- 精简导航栏 -->
     <nav class="navbar">
         <a href="#" class="logo">IL GIORNALE</a>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
         <div class="nav-links">
-            <a href="#" class="nav-item">Home</a>
-            <div class="dropdown">
-                <a href="#" class="nav-item">Notizie ▼</a>
-                <div class="dropdown-content">
-                    <a href="#">Cronaca</a>
-                    <a href="#">Politica</a>
-                    <a href="#">Economia</a>
-                    <a href="#">Sport</a>
-                </div>
-            </div>
-            <a href="#" class="nav-item">Video</a>
-            <a href="#" class="nav-item">Contatti</a>
-            <div class="dropdown">
-                <a href="#" class="nav-item">Altro ▼</a>
-                <div class="dropdown-content">
-                    <a href="#">Chi Siamo</a>
-                    <a href="#">Abbonamenti</a>
-                    <a href="#">Archivio</a>
-                </div>
-            </div>
+            <a href="#" class="logo">Home</a>
+            <a href="#" class="logo">Archivio</a>
         </div>
     </nav>
 
-    <!-- 主要内容 -->
+    <!-- 核心内容区 -->
     <div class="header">
         <div class="alert">🚨 ULTIMA ORA: DISASTRO AEREO SULL'ATLANTICO 🚨</div>
-        <h1>Un aereo da Milano agli Stati Uniti precipita in mare: nessun superstite</h1>
+        <h1>Volo Milano-New York precipitato: nessun sopravvissuto</h1>
     </div>
 
-    <div class="content">
-        <p>
-            Un disastro senza precedenti ha sconvolto il mondo dell'aviazione: un volo diretto da Milano agli Stati Uniti è precipitato nell'Atlantico, senza lasciare superstiti. 
-            Le cause dell'incidente sono ancora sconosciute, mentre le squadre di soccorso stanno operando nella zona per recuperare i resti dell'aereo.
-        </p>
-        <img src="/mnt/data/file-6qAzxik9eDP6L53i1CRi3B" alt="Scena del disastro aereo">
-        <p class="caption">Immagine del relitto dell'aereo dopo lo schianto.</p>
+    <!-- 图片展示区 -->
+    <div class="image-grid">
+        <div>
+            <img src="crash-photo.jpg" alt="Resti dell'aereo" class="main-image">
+            <p class="caption">I soccorritori sul luogo dell'incidente (Foto: AP)</p>
+        </div>
         
-        <div class="victim">
-            <h3>L'unica vittima identificata</h3>
-            <img src="/mnt/data/file-CvuLjznApyUjfSiJnviJ4r" alt="Unica vittima del disastro">
-            <p>Un sorriso spezzato troppo presto. Il mondo piange la perdita di una vita innocente in questa terribile tragedia.</p>
+        <div>
+            <img src="victim-profile.jpg" alt="Arturo Romeo" class="profile-img">
+            <p class="caption">Arturo Romeo (1995-2023)</p>
+            <button onclick="showError()" style="margin-top:15px; padding:10px 20px; background:#c00; color:white; border:none; border-radius:4px;">
+                Approfondisci
+            </button>
         </div>
     </div>
 
-    <script>
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-    </script>
+    <!-- 文字内容区 -->
+    <div class="content">
+        <h2>La tragedia in dettaglio</h2>
+        <p>Il volo AZ608 partito da Malpensa è precipitato 20 minuti dopo il decollo...</p>
+        <h3>Timeline degli eventi</h3>
+        <ul>
+            <li>09:15 - Ultimo contatto radio</li>
+            <li>09:30 - Rilevazione del segnale di emergenza</li>
+            <li>10:15 - Conferma dello schianto</li>
+        </ul>
+    </div>
 
 </body>
 </html>
