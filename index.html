@@ -59,10 +59,10 @@
             }
 
             .nav-links {
-                display: none;
+                display: none; /* 默认隐藏 */
                 flex-direction: column;
                 position: absolute;
-                top: 60px;
+                top: 60px; /* 导航栏高度 */
                 left: 0;
                 right: 0;
                 background: #1a1a1a;
@@ -70,7 +70,7 @@
             }
 
             .nav-links.active {
-                display: flex;
+                display: flex; /* 点击汉堡菜单时显示 */
             }
         }
 
@@ -145,16 +145,6 @@
             background: #a00;
         }
     </style>
-    <script>
-        function toggleMenu() {
-            const nav = document.querySelector('.nav-links');
-            nav.classList.toggle('active');
-        }
-
-        function showError() {
-            alert('Errore di connessione: Si prega di verificare la rete');
-        }
-    </script>
 </head>
 <body>
 
@@ -200,5 +190,15 @@
         </ul>
     </div>
 
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+
+        function showError() {
+            alert('Errore di connessione: Si prega di verificare la rete');
+        }
+    </script>
 </body>
 </html>
