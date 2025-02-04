@@ -14,7 +14,7 @@
             padding-top: 80px;
         }
 
-        /* 导航栏样式 */
+        /* 导航栏样式 - 强制显示 */
         .navbar {
             background: #1a1a1a;
             padding: 15px 20px;
@@ -43,6 +43,11 @@
             color: white;
             text-decoration: none;
             font-size: 18px;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
         }
 
         .hamburger {
@@ -50,6 +55,7 @@
             font-size: 24px;
             color: white;
             cursor: pointer;
+            padding: 5px;
         }
 
         /* 移动端优化 */
@@ -59,18 +65,19 @@
             }
 
             .nav-links {
-                display: none; /* 默认隐藏 */
+                display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 60px; /* 导航栏高度 */
+                top: 100%;
                 left: 0;
                 right: 0;
                 background: #1a1a1a;
                 padding: 15px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             }
 
             .nav-links.active {
-                display: flex; /* 点击汉堡菜单时显示 */
+                display: flex;
             }
         }
 
@@ -89,6 +96,11 @@
             font-size: 1.5em;
             padding: 10px;
             margin-bottom: 20px;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.7; }
         }
 
         /* 图片展示优化 */
@@ -101,8 +113,10 @@
 
         .main-image, .profile-img {
             width: 100%;
-            height: auto;
+            height: 300px;
+            object-fit: cover;
             border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .caption {
@@ -121,40 +135,42 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        .content h2, .content h3 {
-            margin-top: 0;
-        }
-
-        .content ul {
-            padding-left: 20px;
+        .content h2 {
+            color: #c00;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
         }
 
         /* 按钮样式 */
         button {
-            margin-top: 15px;
-            padding: 10px 20px;
+            display: block;
+            margin: 15px auto 0;
+            padding: 12px 25px;
             background: #c00;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            transition: transform 0.2s;
         }
 
         button:hover {
             background: #a00;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
 
-    <!-- 导航栏 -->
+    <!-- 强制显示的导航栏 -->
     <nav class="navbar">
         <a href="#" class="logo">IL GIORNALE</a>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#">Archivio</a>
+            <a href="#">Contatti</a>
         </div>
     </nav>
 
@@ -164,15 +180,19 @@
         <h1>Volo Milano-USA precipitato: nessun sopravvissuto</h1>
     </div>
 
-    <!-- 图片展示区 -->
+    <!-- 图片展示区（使用在线示例图片） -->
     <div class="image-grid">
         <div>
-            <img src="crash-photo.jpg" alt="Resti dell'aereo" class="main-image">
+            <img src="https://via.placeholder.com/800x400?text=Crash+Photo" 
+                 alt="Resti dell'aereo" 
+                 class="main-image">
             <p class="caption">I soccorritori sul luogo dell'incidente (Foto: AP)</p>
         </div>
         
         <div>
-            <img src="victim-profile.jpg" alt="Arturo Romeo" class="profile-img">
+            <img src="https://via.placeholder.com/400x500?text=Victim+Profile" 
+                 alt="Arturo Romeo" 
+                 class="profile-img">
             <p class="caption">Arturo Romeo (1995-2023)</p>
             <button onclick="showError()">Approfondisci</button>
         </div>
@@ -182,23 +202,56 @@
     <div class="content">
         <h2>La tragedia in dettaglio</h2>
         <p>Il volo AZ608 partito da Malpensa è precipitato 20 minuti dopo il decollo...</p>
+        
         <h3>Timeline degli eventi</h3>
         <ul>
-            <li>09:15 - Ultimo contatto radio</li>
-            <li>09:30 - Rilevazione del segnale di emergenza</li>
-            <li>10:15 - Conferma dello schianto</li>
+            <li><strong>09:15</strong> - Ultimo contatto radio</li>
+            <li><strong>09:30</strong> - Rilevazione del segnale di emergenza</li>
+            <li><strong>10:15</strong> - Conferma dello schianto</li>
         </ul>
     </div>
 
     <script>
+        // 增强版导航控制
         function toggleMenu() {
             const nav = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            
             nav.classList.toggle('active');
+            hamburger.innerHTML = nav.classList.contains('active') ? '✕' : '☰';
         }
 
+        // 错误提示功能
         function showError() {
-            alert('Errore di connessione: Si prega di verificare la rete');
+            const errorMsg = document.createElement('div');
+            errorMsg.style = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 25px;
+                background: #c00;
+                color: white;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            `;
+            errorMsg.textContent = 'Errore di connessione: Verificare la rete';
+            document.body.appendChild(errorMsg);
+            
+            setTimeout(() => {
+                errorMsg.remove();
+            }, 3000);
         }
+
+        // 确保移动端点击菜单外区域关闭导航
+        document.addEventListener('click', (e) => {
+            const nav = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!e.target.closest('.navbar') && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                hamburger.innerHTML = '☰';
+            }
+        });
     </script>
 </body>
 </html>
